@@ -35,11 +35,6 @@
   when:
     - playbook_version.content|default("Mgo=")|b64decode|int - 1 >= playbook_version_number|int and submodules_versioncheck|bool
 
-- name: check if '/etc/ansible-version/' is empty
-  ansible.builtin.find:
-    paths: '/etc/ansible-version/'
-  register: filesFound
-
 - name: write new version to remote disk
   become: true
   ansible.builtin.copy:
